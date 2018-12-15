@@ -1,39 +1,43 @@
 <template>
 
 <div class="container">
-
+    <form name="subscription" id="subscription" method="post" data-netlify="true">
+    <input type="hidden" name="type" value="student" />
     <form-wizard @on-complete="onComplete" 
                     title="Join Now"
                     subtitle="Sub-title line"
                     shape="square"
                     color="#3498db">
-        <tab-content title="Personal details"
+        <tab-content title="Basic Data"
                         icon="ti-user"
                         :before-change="validateFirstTab">
-            My first tab content
+
             <vue-form-generator :model="model"
                     :schema="firstTabSchema"
                     :options="formOptions"
                     ref="firstTabForm">
             </vue-form-generator>
         </tab-content>
-        <tab-content title="Additional Info"
+        <tab-content title="Select your Plan"
                         icon="ti-settings">
             My second tab content
         </tab-content>
-        <tab-content title="Last step"
+        <tab-content title="BOOK FIRST LESSON"
                         icon="ti-check">
             Yuhuuu! This seems pretty damn simple
         </tab-content>
     </form-wizard>
+
+    </form>
  </div>
 
 
 </template>
 <script>
 import {FormWizard, TabContent} from 'vue-form-wizard'
-import VueFormGenerator from "vue-form-generator";
+import VueFormGenerator from "vue-form-generator"
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import axios from 'axios'
 
 export default {
     components: {
@@ -45,35 +49,8 @@ export default {
         return {
             model: {
                 name: "",
-                contributionPlan: "",
-                postMethod: "",
-                followersNumber: "",
-                numberPeople: "",
-                peopleInGroup: "",
-                valuePerPerson: "",
-                proposedHeading: "",
-                caseDescription: "",
-                product: "",
-                thumbnailImage: "",
-                referenceImage: "",
-                postingNotes: "",
-                specifiedUrl: "",
-                shootingInstruction: "",
-                shootingSample: "",
-                hashtag: "",
-                hashtagSetting: "",
-                nationality: "",
-                minimumAge: "",
-                maximumAge: "",
-                specificGender: "",
-                area: "",
-                recruitmentStartDate: "",
-                recruitmentEndDate: "",
-                selectionPeriodDate: "",
-                experienceStartDate: "",
-                supplementExperienceDate: "",
-                snsStartDate: "",
-                snsEndDate: "",
+                email: "",
+                password: "",
             },
             formOptions: {
                 validationErrorClass: "has-error"
@@ -92,20 +69,19 @@ export default {
                     {
                         type: "input",
                         inputType: "text",
-                        label: "E-mail",
+                        label: "Email",
                         model: "email",
                         required: true,
                         validator: VueFormGenerator.validators.email,
                         styleClasses: "",
                     },
                     {
-                    type: "radios",
-                    label: "投稿方法",
-                    model: "postMethod",
-                    required: true,
-                    values: [ "通常", "ストーリー", "カルーセル"],
-                    validator: VueFormGenerator.validators.required,
-                    styleClasses: "form-radio",
+                        type: "input",
+                        inputType: "password",
+                        label: "Password",
+                        model: "password",
+                        required: true,
+                        styleClasses: "",
                     },
                 ],
             }
@@ -113,7 +89,22 @@ export default {
     },
     methods: {
         onComplete: function(){
-            alert('Yay. Done!');
+            const params = new URLSearchParams()
+
+            params.append('form-name', 'subscription') // Forms使うのに必要
+
+            params.append('name', this.name)
+            params.append('email', this.email)
+            params.append('password', this.password)
+
+            axios
+                .post('/', params)
+                .then((response) => {
+                    console.log(response)
+                })
+           window.location.href = '/thanks'
+
+            //return document.getElementById("subscription").submit();
         },
         validateFirstTab() {
             return this.$refs.firstTabForm.validate();

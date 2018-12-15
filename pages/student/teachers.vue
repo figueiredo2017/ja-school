@@ -3,119 +3,57 @@
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Portfolio 1
-        <small>Subheading</small>
+      <h1 class="mt-4 mb-3">Select the Teacher
+        <small></small>
       </h1>
 
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="/">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Portfolio 1</li>
-      </ol>
 
-      <!-- Project One -->
-      <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Project One</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-          <a class="btn btn-primary" href="#">View Project
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-        </div>
-      </div>
-      <!-- /.row -->
-
+<div v-for="teacher in teachers">
+      <c-horizontal-item :parameters="teacher"></c-horizontal-item>
       <hr>
-
-      <!-- Project Two -->
-      <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Project Two</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
-          <a class="btn btn-primary" href="#">View Project
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-        </div>
       </div>
-      <!-- /.row -->
 
-      <hr>
+      
 
-      <!-- Project Three -->
-      <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Project Three</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
-          <a class="btn btn-primary" href="#">View Project
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Project Four -->
-      <div class="row">
-
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-          </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Project Four</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
-          <a class="btn btn-primary" href="#">View Project
-            <span class="glyphicon glyphicon-chevron-right"></span>
-          </a>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <hr>
-
-      <!-- Pagination -->
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">Previous</span>
-          </a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-      </ul>
+      <c-pagination></c-pagination>
 
     </div>
     <!-- /.container -->
 </template>
+
+<script>
+export default {
+  data: () => {
+    return {
+      teachers : [
+        {
+          title : "Reiko Nonogaki",
+          alt : "Reiko Nonogaki",
+          image : "https://www.towson.edu/cla/images/nonogaki-reiko-op-sq.jpg",
+          description : "Every summer when Towson University Japanese language instructor Reiko Nonogaki travels to Japan to see family and friends, she also loads up on restaurant menus, train tickets, books, newspapers and the wildly popular “Manga” comics for her students back at TU.",
+          link: "/teacher/reiko-nonogaki",
+          action: "See Profile"
+        },
+        {
+          title : "Hiromi Yonemoto",
+          alt : "Hiromi Yonemoto",
+          image : "https://www.brightwaterwaldorf.org/wp-content/uploads/2017/12/0153.jpg",
+          description : "Born in Hiroshima, Japan, Hiromi Yonemoto has experience teaching her native language to English speakers, as well as teaching English to Japanese speaking.",
+          link: "/teacher/Hiromi-Yonemoto",
+          action: "See Profile"
+        },
+        {
+          title : "Tomoko Graham",
+          alt : "Tomoko Graham",
+          image : "http://www.aatj.org/images/Graham.jpg",
+          description : "Ms. Graham has been teaching all levels of Japanese language for over 30 years, both at universities and high schools. She loves her job, saying, “Day-to-Day classroom teaching is the heart of my profession”.",
+          link: "/teacher/Tomoko-Graham",
+          action: "See Profile"
+          
+        }
+      ]
+      
+    }
+  }
+}
+</script>
